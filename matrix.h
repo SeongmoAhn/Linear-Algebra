@@ -53,6 +53,28 @@ public:
     int getRow() { return row; }
     int getCol() { return col; }
 
+    void transpose() {
+        int **ret = (int **)malloc(sizeof(int *) * col);
+        for (int i = 0; i < col; i++)
+            ret[i] = (int *)malloc(sizeof(int) * row);
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++)
+                ret[j][i] = mat[i][j];
+        }
+
+        int **tempMat = mat;
+        mat = ret;
+        ret = tempMat;
+        for (int i = 0; i < row; i++)
+            free(ret[i]);
+        free(ret);
+
+        int temp = row;
+        row = col;
+        col = temp;
+    }
+
     // 행렬 출력
     void print() {
         printf("= %d X %d Matrix =\n", row, col);

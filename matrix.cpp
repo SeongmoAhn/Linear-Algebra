@@ -5,11 +5,13 @@
 using namespace std;
 
 int main() {
-    Matrix m1(3, 3, 0);
-    Matrix m2(3, 2, 1);
+    Matrix m1(3, 4);
 
+    printf("기존 행렬\n");
     m1.print();
-    m2.print();
+    m1.transpose();
+    printf("전치 행렬\n");
+    m1.print();
 
     return 0;
 }
