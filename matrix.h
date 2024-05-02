@@ -9,6 +9,7 @@ class Matrix {
     int col;
 
 public:
+    // 생성자
     Matrix(int row, int col) : row(row), col(col) {
         mat = (int **)malloc(sizeof(int *) * row);
         for (int i = 0; i < row; i++)
@@ -21,6 +22,28 @@ public:
         }
         printf("\n");
     }
+    // 생성자(단위행렬, 영행렬)
+    // type이 0이면 영행렬, 1이면 단위행렬
+    Matrix(int row, int col, int type) : row(row), col(col) {
+        mat = (int **)malloc(sizeof(int *) * row);
+        for (int i = 0; i < row; i++)
+            mat[i] = (int *)malloc(sizeof(int) * col);
+
+        printf("[ %d X %d %s Matrix ]\n", row, col, (type ? "Identity" : "Zero"));
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (type) {
+                    if (i == j) mat[i][j] = 1;
+                    else mat[i][j] = 0;
+                }
+                else {
+                    mat[i][j] = 0;
+                }
+            }
+        }
+        printf("\n");
+    }
+    // 소멸자
     ~Matrix() {
         for (int i = 0; i < row; i++)
             free(mat[i]);
