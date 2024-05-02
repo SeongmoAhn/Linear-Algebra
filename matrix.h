@@ -52,6 +52,7 @@ public:
 
     int getRow() { return row; }
     int getCol() { return col; }
+    int getElement(int r, int c) { return mat[r][c]; }
 
     void transpose() {
         int **ret = (int **)malloc(sizeof(int *) * col);
@@ -73,6 +74,19 @@ public:
         int temp = row;
         row = col;
         col = temp;
+    }
+
+    int operator==(Matrix &m) {
+        if (row != m.getRow() || col != m.getCol()) return 0;
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (mat[i][j] != m.getElement(i, j))
+                    return 0;
+            }
+        }
+
+        return 1;
     }
 
     // 행렬 출력

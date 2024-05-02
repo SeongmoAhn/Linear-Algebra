@@ -6,12 +6,10 @@ using namespace std;
 
 int main() {
     Matrix m1(3, 4);
+    Matrix m2(3, 3);
 
-    printf("기존 행렬\n");
-    m1.print();
-    m1.transpose();
-    printf("전치 행렬\n");
-    m1.print();
+    if (m1 == m2) printf("m1과 m2는 같은 행렬\n");
+    else printf("m1과 m2는 다른 행렬\n");
 
     return 0;
 }
